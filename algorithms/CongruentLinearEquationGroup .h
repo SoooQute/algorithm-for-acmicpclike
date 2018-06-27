@@ -82,4 +82,4 @@ public:
     int getNextSolution(int x) {
         return x + dis;
     }
-};
+}; 
