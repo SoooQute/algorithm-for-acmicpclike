@@ -63,5 +63,4 @@ public:
         for (int i = 2; i <= sz; i++) G[fa[i]].push_back(i);
         dfs(1);
     }
-
 };
