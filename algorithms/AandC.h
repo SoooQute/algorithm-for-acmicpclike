@@ -23,4 +23,4 @@ public:
     long long C(int a, int b) {
         return fac[a] * inv[b] % mod * inv[a - b] % mod;
     }
-};
+}; 
