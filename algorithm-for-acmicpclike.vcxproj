@@ -145,6 +145,28 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algorithms\AandC.h" />
+    <ClInclude Include="algorithms\BigNum.h" />
+    <ClInclude Include="algorithms\CongruentLinearEquationGroup .h" />
+    <ClInclude Include="algorithms\DFFT.h" />
+    <ClInclude Include="algorithms\EularFunction.h" />
+    <ClInclude Include="algorithms\Hungary.h" />
+    <ClInclude Include="algorithms\Kruskal_Prim.h" />
+    <ClInclude Include="algorithms\LCA.h" />
+    <ClInclude Include="algorithms\LnBase.h" />
+    <ClInclude Include="algorithms\mincostflow.h" />
+    <ClInclude Include="algorithms\Mobius.h" />
+    <ClInclude Include="algorithms\QuickPow.h" />
+    <ClInclude Include="algorithms\SAM.h" />
+    <ClInclude Include="algorithms\maxflow_SAP.h" />
+    <ClInclude Include="algorithms\SegmentTree.h" />
+    <ClInclude Include="algorithms\Splay.h" />
+    <ClInclude Include="algorithms\Tarjan.h" />
+    <ClInclude Include="algorithms\Treap.h" />
+    <ClInclude Include="algorithms\TreeLHCut.h" />
+    <ClInclude Include="algorithms\Trie.h" />
+    <ClInclude Include="algorithms\UnionFindSet.h" />
+    <ClInclude Include="algorithms\VirtulList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
