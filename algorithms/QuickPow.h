@@ -1,3 +1,4 @@
+#pragma once
 #include "../stdafx.h"
 using namespace std;
 inline long long pow(long long a, long long b, long long p) {
