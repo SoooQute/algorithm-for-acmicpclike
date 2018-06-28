@@ -100,6 +100,6 @@ public:
         return query(1, sz, 1, p);
     }
     ~SegmentTree() {
-        delete[] data, delete[] lazy[];
+        delete[] data, delete[] lazy;
     }
 };
