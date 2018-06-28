@@ -11,7 +11,7 @@ using namespace std;
 
 u(n)	= 1	        n=1
         = (-1)^r	n=p1*p2*......pr，其中pi为各不相同的素数
-        = 0 	    其它
+        = 0         其它
 
 
 

@@ -94,7 +94,7 @@
       <Filter>algorithms</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\Mobius.h">
-      <Filter>todo</Filter>
+      <Filter>algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
