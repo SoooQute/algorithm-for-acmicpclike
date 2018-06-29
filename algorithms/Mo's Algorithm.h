@@ -17,9 +17,9 @@ class MoTao {
 public:
     MoTaoQuery *query;
     int n;
-    function<void(MoTaoQuery &, MoTaoQuery)> transform = [](MoTaoQuery & qa, MoTaoQuery qb)->void {
+    inline void transform(MoTaoQuery &qa, MoTaoQuery qb) {
         /*
-		小心常数...这不是最快的写法
+		小心常数...
 		这里自己写如何从一个已知答案的区间转移到下一个区间，示例如下，表示求区间内出现次数为1的数：
         while (qa.r < qb.r) {
             qa.r++;
