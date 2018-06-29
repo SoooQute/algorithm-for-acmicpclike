@@ -2,70 +2,70 @@
 #include "../stdafx.h"
 using namespace std;
 /*
-能解决的问题：
-
-1.求强连通分量
-
-2.求桥
-
-时间复杂度O(n+m)，讲解看这里
-
-相关的问题还有：
-
-1.求图的割点
-
-2.求图的点连通度
-
-3.求图的边连通度
-
-这几个问题遇到了再补充
-
-G是原图，定义的时候可以这样写：vector<vector<int>> G(10005, vector<int>());，数字表示题目里点的数量。
+dir表示是有向图还是无向图
+color表示该点属于哪个强连通分量
+Scc表示强连通分量，当图是无向图时，Scc表示删掉图中的桥后划分出的各个部分
+bridge表示图中的桥
+cutvertex表示当图是无向图时图中的割点
 */
 class Tarjan {
 public:
-    int n;
-    vector<int> dfn, low;
-    vector<bool> inStack;
-    vector<vector<int>> * G;
+    int n, *color;
+    bool *cutvertex, *root;
+    vector<vector<int>> Scc;
+    vector<vector<int>> dfsTree;
+    vector<pair<int, int>> bridge;
+
+    int *dfn, *low;
+    bool *inStack;
+    vector<int> *G;
     int dep;
     stack<int> pStack;
-    vector<vector<int>> Scc;
-    vector<int> color;
-    vector<pair<int, int>> bridge;
     vector<int> component;
 
-    void init(vector<vector<int>> * G, int size);
-    void dfs(int x);
-    void runTarjan();
+    Tarjan() : n(0) {}
+    void init(vector<int> *G, int size);
+    void dfs(int x, int fa, bool dir);
+    void run(bool dir);
+    ~Tarjan() {
+        delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root;
+    }
 };
-void Tarjan::init(vector<vector<int>> * Graph, int size) {
-    if (size < 0) return;
-    G = Graph, n = size;
-    dfn.clear(), low.clear(), inStack.clear(), Scc.clear(), color.clear(), bridge.clear();
-    dfn = vector<int>(n + 1, 0);
-    low = vector<int>(n + 1, 0);
-    inStack = vector<bool>(n + 1, false);
-    color = vector<int>(n + 1, 0);
+void Tarjan::init(vector<int> *Graph, int size) {
+    G = Graph;
+    if (n < size) {
+        n = size;
+        delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root;
+        dfn = new int[n + 1], low = new int[n + 1], inStack = new bool[n + 1], cutvertex = new bool[n + 1], root = new bool[n + 1], Scc.clear(), color = new int[n + 1], bridge.clear();
+    }
+    memset(dfn, 0, sizeof(int) * (n + 1));
+    memset(low, 0, sizeof(int) * (n + 1));
+    memset(inStack, false, sizeof(bool) * (n + 1));
+    memset(cutvertex, false, sizeof(bool) * (n + 1));
+    memset(color, 0, sizeof(int) * (n + 1));
+    memset(root, false, sizeof(bool) * (n + 1));
+    dfsTree.resize(n + 1);
+    for (int i = 1; i <= n; i++) dfsTree[i].clear();
     dep = 0;
     while (!pStack.empty()) pStack.pop();
 }
-void Tarjan::dfs(int x) {
+void Tarjan::dfs(int x, int fa, bool dir) {
     if (x > n) return;
+    if (fa == -1) root[x] = true;
     inStack[x] = true;
     dfn[x] = low[x] = ++dep;
     pStack.push(x);
-    for (int i = 0; i < (*G)[x].size(); i++) {
-        int u = (*G)[x][i];
+    for (int i = 0; i < G[x].size(); i++) {
+        int u = G[x][i];
+        if (!dir && u == fa) continue;
         if (dfn[u] == 0) {
-            dfs(u);
+            dfsTree[x].push_back(u);
+            if (!dir && fa == -1 && dfsTree[x].size() > 1) cutvertex[x] = true;
+            dfs(u, x, dir);
             low[x] = min(low[x], low[u]);
-            if (dfn[x] < low[u]) {
-                bridge.push_back(make_pair(x, u));
-            }
-        } else {
-            if (inStack[u]) low[x] = min(low[x], dfn[u]);
-        }
+            if (!dir && fa != -1 && low[u] >= dfn[x]) cutvertex[x] = true;
+            if (dfn[x] < low[u]) bridge.push_back(make_pair(x, u));
+        } else if (inStack[u]) low[x] = min(low[x], dfn[u]);
     }
     if (low[x] == dfn[x]) {
         component.clear();
@@ -80,8 +80,8 @@ void Tarjan::dfs(int x) {
         Scc.push_back(component);
     }
 }
-void Tarjan::runTarjan() {
+void Tarjan::run(bool dir) {
     for (int i = 1; i <= n; i++) {
-        if (!dfn[i]) dfs(i);
+        if (!dfn[i]) dfs(i, -1, dir);
     }
 }
