@@ -22,6 +22,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="list.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,9 +37,6 @@
       <Filter>algorithms</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\UnionFindSet.h">
-      <Filter>algorithms</Filter>
-    </ClInclude>
-    <ClInclude Include="algorithms\CongruentLinearEquationGroup .h">
       <Filter>algorithms</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\SAM.h">
@@ -94,6 +94,12 @@
       <Filter>algorithms</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\Mobius.h">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\Mo%27s Algorithm.h">
+      <Filter>algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\RemainderGroup.h">
       <Filter>algorithms</Filter>
     </ClInclude>
   </ItemGroup>

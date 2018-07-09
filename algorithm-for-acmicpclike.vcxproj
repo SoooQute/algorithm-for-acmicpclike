@@ -88,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,12 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="list.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithms\AandC.h" />
     <ClInclude Include="algorithms\BigNum.h" />
-    <ClInclude Include="algorithms\CongruentLinearEquationGroup .h" />
+    <ClInclude Include="algorithms\RemainderGroup.h" />
     <ClInclude Include="algorithms\DFFT.h" />
     <ClInclude Include="algorithms\EularFunction.h" />
     <ClInclude Include="algorithms\Hungary.h" />
@@ -155,6 +157,7 @@
     <ClInclude Include="algorithms\LCA.h" />
     <ClInclude Include="algorithms\LnBase.h" />
     <ClInclude Include="algorithms\mincostflow.h" />
+    <ClInclude Include="algorithms\Mo%27s Algorithm.h" />
     <ClInclude Include="algorithms\Mobius.h" />
     <ClInclude Include="algorithms\QuickPow.h" />
     <ClInclude Include="algorithms\SAM.h" />
