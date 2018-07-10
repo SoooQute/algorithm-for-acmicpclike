@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../algorithm-for-acmicpclike;$(IncludePath)</IncludePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,29 +149,29 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="algorithms\AandC.h" />
-    <ClInclude Include="algorithms\BigNum.h" />
-    <ClInclude Include="algorithms\RemainderGroup.h" />
-    <ClInclude Include="algorithms\DFFT.h" />
-    <ClInclude Include="algorithms\EularFunction.h" />
-    <ClInclude Include="algorithms\Hungary.h" />
-    <ClInclude Include="algorithms\Kruskal_Prim.h" />
-    <ClInclude Include="algorithms\LCA.h" />
-    <ClInclude Include="algorithms\LnBase.h" />
-    <ClInclude Include="algorithms\mincostflow.h" />
-    <ClInclude Include="algorithms\Mo%27s Algorithm.h" />
-    <ClInclude Include="algorithms\Mobius.h" />
-    <ClInclude Include="algorithms\QuickPow.h" />
-    <ClInclude Include="algorithms\SAM.h" />
-    <ClInclude Include="algorithms\maxflow_SAP.h" />
-    <ClInclude Include="algorithms\SegmentTree.h" />
-    <ClInclude Include="algorithms\Splay.h" />
-    <ClInclude Include="algorithms\Tarjan.h" />
-    <ClInclude Include="algorithms\Treap.h" />
-    <ClInclude Include="algorithms\TreeLHCut.h" />
-    <ClInclude Include="algorithms\Trie.h" />
-    <ClInclude Include="algorithms\UnionFindSet.h" />
-    <ClInclude Include="algorithms\VirtulList.h" />
+    <ClInclude Include="algorithms\data structure\SegmentTree.h" />
+    <ClInclude Include="algorithms\data structure\Splay.h" />
+    <ClInclude Include="algorithms\data structure\Treap.h" />
+    <ClInclude Include="algorithms\data structure\TreeLHCut.h" />
+    <ClInclude Include="algorithms\data structure\UnionFindSet.h" />
+    <ClInclude Include="algorithms\data structure\VirtulList.h" />
+    <ClInclude Include="algorithms\graph\Hungary.h" />
+    <ClInclude Include="algorithms\graph\Kruskal_Prim.h" />
+    <ClInclude Include="algorithms\graph\LCA.h" />
+    <ClInclude Include="algorithms\graph\maxflow_SAP.h" />
+    <ClInclude Include="algorithms\graph\mincostflow.h" />
+    <ClInclude Include="algorithms\graph\Tarjan.h" />
+    <ClInclude Include="algorithms\math\AandC.h" />
+    <ClInclude Include="algorithms\math\BigNum.h" />
+    <ClInclude Include="algorithms\math\DFFT.h" />
+    <ClInclude Include="algorithms\math\EularFunction.h" />
+    <ClInclude Include="algorithms\math\LnBase.h" />
+    <ClInclude Include="algorithms\math\Mobius.h" />
+    <ClInclude Include="algorithms\math\QuickPow.h" />
+    <ClInclude Include="algorithms\math\RemainderGroup.h" />
+    <ClInclude Include="algorithms\others\Mo%27s Algorithm.h" />
+    <ClInclude Include="algorithms\string\SAM.h" />
+    <ClInclude Include="algorithms\string\Trie.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
