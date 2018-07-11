@@ -152,7 +152,7 @@
     <ClInclude Include="algorithms\data structure\SegmentTree.h" />
     <ClInclude Include="algorithms\data structure\Splay.h" />
     <ClInclude Include="algorithms\data structure\Treap.h" />
-    <ClInclude Include="algorithms\data structure\TreeLHCut.h" />
+    <ClInclude Include="algorithms\data structure\TreeAnatomy.h" />
     <ClInclude Include="algorithms\data structure\UnionFindSet.h" />
     <ClInclude Include="algorithms\data structure\VirtulList.h" />
     <ClInclude Include="algorithms\graph\Hungary.h" />
@@ -161,6 +161,7 @@
     <ClInclude Include="algorithms\graph\maxflow_SAP.h" />
     <ClInclude Include="algorithms\graph\mincostflow.h" />
     <ClInclude Include="algorithms\graph\Tarjan.h" />
+    <ClInclude Include="algorithms\graph\TreeDiameter.h" />
     <ClInclude Include="algorithms\math\AandC.h" />
     <ClInclude Include="algorithms\math\BigNum.h" />
     <ClInclude Include="algorithms\math\DFFT.h" />
@@ -183,6 +184,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

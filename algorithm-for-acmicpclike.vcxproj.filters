@@ -36,9 +36,6 @@
     <ClInclude Include="algorithms\data structure\Treap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="algorithms\data structure\TreeLHCut.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="algorithms\data structure\UnionFindSet.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -96,6 +93,12 @@
     <ClInclude Include="algorithms\string\Trie.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="algorithms\graph\TreeDiameter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\data structure\TreeAnatomy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -104,5 +107,8 @@
     <ClCompile Include="algorithm-for-acmicpclike.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
