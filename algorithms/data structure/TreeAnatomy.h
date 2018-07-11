@@ -6,7 +6,7 @@
 上，得到不超过log(n)条线段。然后可以用线段树（或其他数据结构）来维护得到的直线，来达到降低时间花费的目的。
 */
 using namespace std;
-class TreeLHCut {
+class TreeAnatomy {
     //Tree node index start from 1
 private:
     int n, cnt;
@@ -17,7 +17,7 @@ private:
     void dfs1(int u, int fa, int d);
     void dfs2(int u, int tp);
 public:
-    TreeLHCut(int n) : st(n, 0) {
+	TreeAnatomy(int n) : st(n, 0) {
         dep = (int *)malloc((n << 1) * sizeof(int));
         father = (int *)malloc((n << 1) * sizeof(int));
         siz = (int *)malloc((n << 1) * sizeof(int));
@@ -31,7 +31,7 @@ public:
     int query(int u);
     void modify(int u, int v, int k);
 };
-void TreeLHCut::dfs1(int u, int fa, int d) {
+void TreeAnatomy::dfs1(int u, int fa, int d) {
     dep[u] = d;
     father[u] = fa;
     siz[u] = 1;
@@ -44,7 +44,7 @@ void TreeLHCut::dfs1(int u, int fa, int d) {
         if (son[u] == -1 || siz[v] > siz[son[u]]) son[u] = v;
     }
 }
-void TreeLHCut::dfs2(int u, int tp) {
+void TreeAnatomy::dfs2(int u, int tp) {
     top[u] = tp;
     tid[u] = ++cnt;
     rnk[tid[u]] = u;
@@ -55,17 +55,17 @@ void TreeLHCut::dfs2(int u, int tp) {
         if (v != son[u] && v != father[u]) dfs2(v, v);
     }
 }
-void TreeLHCut::cut(vector<vector<int> > * Tree, int * weight, int size) {
+void TreeAnatomy::cut(vector<vector<int> > * Tree, int * weight, int size) {
     T = Tree, w = weight, n = size, cnt = 0;
     dfs1(1, -1, 0);
     dfs2(1, 1);
     for (int i = 1; i <= n; i++) base[i] = w[rnk[i]];
     st.build(base, 1, n);
 }
-int TreeLHCut::query(int u) {
+int TreeAnatomy::query(int u) {
     return st.query(tid[u], tid[u]);
 }
-void TreeLHCut::modify(int u, int v, int k) {
+void TreeAnatomy::modify(int u, int v, int k) {
     while (top[u] != top[v]) {
         if (dep[top[u]] < dep[top[v]]) swap(u, v);
         st.modify(tid[top[u]], tid[u], k);
