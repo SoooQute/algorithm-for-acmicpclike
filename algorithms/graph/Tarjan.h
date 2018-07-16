@@ -18,15 +18,17 @@ public:
 
     int *dfn, *low;
     bool *inStack;
-    vector<int> *G;
+    vector<int> *G, *DAG;
     int dep;
     stack<int> pStack;
     vector<int> component;
 
     Tarjan() : n(0) {}
-    void init(vector<int> *G, int size);
-    void dfs(int x, int fa, bool dir);
-    void run(bool dir);
+    void init(vector<int> *, int);
+    void dfs(int, int, bool);
+    void run(bool);
+	//生成的DAG中点的下标从1开始，为原color值加1
+    void getDAG();
     ~Tarjan() {
         delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root;
     }
@@ -83,5 +85,15 @@ void Tarjan::dfs(int x, int fa, bool dir) {
 void Tarjan::run(bool dir) {
     for (int i = 1; i <= n; i++) {
         if (!dfn[i]) dfs(i, -1, dir);
+    }
+}
+void Tarjan::getDAG() {
+    if (DAG != NULL) delete[] DAG;
+    DAG = new vector<int>[n << 1];
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < G[i].size(); j++) {
+            int u = i, v = G[i][j];
+            if (color[u] != color[v]) DAG[color[u] + 1].push_back(color[v] + 1);
+        }
     }
 }
