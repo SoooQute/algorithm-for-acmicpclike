@@ -156,6 +156,7 @@
     <ClInclude Include="algorithms\data structure\TreeAnatomy.h" />
     <ClInclude Include="algorithms\data structure\UnionFindSet.h" />
     <ClInclude Include="algorithms\data structure\VirtulList.h" />
+    <ClInclude Include="algorithms\graph\2-SAT.h" />
     <ClInclude Include="algorithms\graph\Hungary.h" />
     <ClInclude Include="algorithms\graph\Kruskal_Prim.h" />
     <ClInclude Include="algorithms\graph\LCA.h" />
