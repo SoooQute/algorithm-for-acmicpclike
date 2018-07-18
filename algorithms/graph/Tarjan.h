@@ -10,6 +10,7 @@ cutvertex表示当图是无向图时图中的割点
 */
 class Tarjan {
 public:
+    int size;
     int n, *color;
     bool *cutvertex, *root;
     vector<vector<int>> Scc;
@@ -23,23 +24,21 @@ public:
     stack<int> pStack;
     vector<int> component;
 
-    Tarjan() : n(0) {}
+    Tarjan(int sz) : size(sz), n(0) {
+        dfn = new int[sz << 1], low = new int[sz << 1], inStack = new bool[sz << 1], cutvertex = new bool[sz << 1], root = new bool[sz << 1], color = new int[sz << 1];
+    }
     void init(vector<int> *, int);
     void dfs(int, int, bool);
     void run(bool);
-	//生成的DAG中点的下标从1开始，为原color值加1
     void getDAG();
     ~Tarjan() {
-        delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root;
+        delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root, delete[] DAG;
     }
 };
-void Tarjan::init(vector<int> *Graph, int size) {
-    G = Graph;
-    if (n < size) {
-        n = size;
-        delete[] dfn, delete[] low, delete[] inStack, delete[] color, delete[] cutvertex, delete[] root;
-        dfn = new int[n + 1], low = new int[n + 1], inStack = new bool[n + 1], cutvertex = new bool[n + 1], root = new bool[n + 1], Scc.clear(), color = new int[n + 1], bridge.clear();
-    }
+void Tarjan::init(vector<int> *iG, int sz) {
+    G = iG;
+    n = sz;
+    Scc.clear(), bridge.clear();
     memset(dfn, 0, sizeof(int) * (n + 1));
     memset(low, 0, sizeof(int) * (n + 1));
     memset(inStack, false, sizeof(bool) * (n + 1));
@@ -88,8 +87,7 @@ void Tarjan::run(bool dir) {
     }
 }
 void Tarjan::getDAG() {
-    if (DAG != NULL) delete[] DAG;
-    DAG = new vector<int>[n << 1];
+    for (int i = 0; i <= n; i++) DAG[i].clear();
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j < G[i].size(); j++) {
             int u = i, v = G[i][j];
