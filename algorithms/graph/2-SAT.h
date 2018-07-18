@@ -4,17 +4,22 @@
 
 class Two_SAT {
 public:
+    int size;
+
     Tarjan *ta;
-	//G:根据约束条件构造的图 iDAG:图G用强连通分量缩点后把边全部反向得到的图
     vector<int> *G, *iDAG;
-	//solve是构造出的选择方案
     int n, *solve;
-	// d:iDAG的度,用来拓扑排序 mark:强连通分量是否选择(-1:不选 1:选 0:不确定)
+
     int *d, *mark;
-	//ct[i]表示不能与强连通分量i同时选择的强连通分量列表(注意标号是ta->color的值加1)
     vector<int> *ct;
 
-    Two_SAT() : ta(new Tarjan), n(0) {};
+    Two_SAT(Tarjan *iTa, int sz) : ta(iTa), n(0), size(sz) {
+        G = new vector<int>[sz << 2];
+        ct = new vector<int>[sz << 2];
+        d = new int[sz << 2], mark = new int[sz << 2];
+        iDAG = new vector<int>[sz << 2];
+        solve = new int[sz << 2];
+    };
     void init(int);
     inline void addEdge(int, int);
     /*
@@ -22,51 +27,44 @@ public:
     1:u,v不能同时不取
     2:u,v要么都取，要么都不取
     */
-    void addRestrict(int, int, int);
+    void addRestrict(int, int, int, int, int);
     /*
     0:u,u'必取u
     1:u,u'必取u'
     */
     void addRestrict(int, int);
-	//判断是否有解
     bool judge();
-	//传递不选择标记
     void push(int);
-	//构造一组解
     void build();
     ~Two_SAT() {
-        delete[] G, delete ta, delete[] solve, delete[] d, delete[] mark, delete[] ct;
+        delete[] G, delete ta, delete[] solve, delete[] d, delete[] mark, delete[] ct, delete[] iDAG;
     };
 };
 void Two_SAT::init(int iN) {
-    if (n < iN) {
-        delete[] G, delete[] ct, delete[] d;
-        G = new vector<int>[iN << 2];
-        ct = new vector<int>[iN << 2];
-        d = new int[iN << 2], mark = new int[iN << 2];
-    } else for (int i = 0; i <= iN * 2 + 1; i++) G[i].clear(), ct[i].clear();
     n = iN;
+    for (int i = 0; i <= 2 * n + 1; i++) G[i].clear(), ct[i].clear(), iDAG[i].clear();
 }
 inline void Two_SAT::addEdge(int u, int v) {
     G[u].push_back(v);
 }
-void Two_SAT::addRestrict(int type, int u, int v) {
+void Two_SAT::addRestrict(int type, int u, int au, int v, int av) {
+    u = 2 * u + au, v = 2 * v + av;
     switch (type) {
         case 0: {
-                addEdge(u * 2, v * 2 + 1);
-                addEdge(v * 2, u * 2 + 1);
+                addEdge(u, v ^ 1);
+                addEdge(v, u ^ 1);
                 break;
             }
         case 1: {
-                addEdge(u * 2 + 1, v * 2);
-                addEdge(v * 2 + 1, u * 2);
+                addEdge(u ^ 1, v);
+                addEdge(v ^ 1, u);
                 break;
             }
         case 2: {
-                addEdge(u * 2, v * 2);
-                addEdge(v * 2, u * 2);
-                addEdge(u * 2 + 1, v * 2 + 1);
-                addEdge(v * 2 + 1, u * 2 + 1);
+                addEdge(u, v);
+                addEdge(v, u);
+                addEdge(u ^ 1, v ^ 1);
+                addEdge(v ^ 1, u ^ 1);
                 break;
             }
         default: {
@@ -96,12 +94,8 @@ void Two_SAT::push(int u) {
     }
 }
 void Two_SAT::build() {
-    if (solve != NULL) delete[] solve;
-    solve = new int[n << 1];
-    memset(d, 0, sizeof(d));
-    memset(mark, 0, sizeof(mark));
-    if (iDAG != NULL) delete[] iDAG;
-    iDAG = new vector<int>[4 * n + 2];
+    memset(d, 0, sizeof(int) * (2 * n + 2));
+    memset(mark, 0, sizeof(int) * (2 * n + 2));
     ta->getDAG();
     int nDAG = ta->Scc.size();
     for (int i = 1; i <= nDAG; i++) {
