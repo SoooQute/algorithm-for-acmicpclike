@@ -10,7 +10,7 @@ struct MoTaoQuery {
     MoTaoQuery(int a, int b) : l(a), r(b) {}
     bool operator <(const MoTaoQuery & q)const {
         if (bid != q.bid) return bid < q.bid;
-        return bid & 1 ? r < q.r : r>q.r;
+        return bid & 1 ? (r < q.r) : (r > q.r);
     }
 };
 class MoTao {
@@ -19,8 +19,8 @@ public:
     int n;
     inline void transform(MoTaoQuery &qa, MoTaoQuery qb) {
         /*
-		小心常数...
-		这里自己写如何从一个已知答案的区间转移到下一个区间，示例如下，表示求区间内出现次数为1的数：
+        小心常数...
+        这里自己写如何从一个已知答案的区间转移到下一个区间，示例如下，表示求区间内出现次数为1的数：
         while (qa.r < qb.r) {
             qa.r++;
             c[a[qa.r]]++;
@@ -56,6 +56,11 @@ public:
 };
 void MoTao::init(MoTaoQuery *q, int sz) {
     query = q, n = sz;
+    int b = sqrt(sz);
+    for (int i = 0; i < n; i++) {
+        query[i].bid = query[i].l / b;
+        query[i].id = i;
+    }
 }
 void MoTao::run() {
     sort(query, query + n);
