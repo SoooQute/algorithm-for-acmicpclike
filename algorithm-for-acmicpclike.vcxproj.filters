@@ -36,16 +36,10 @@
     <ClInclude Include="algorithms\data structure\Treap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="algorithms\data structure\UnionFindSet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="algorithms\data structure\VirtulList.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\graph\Hungary.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="algorithms\graph\Kruskal_Prim.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\graph\LCA.h">
@@ -103,6 +97,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\graph\2-SAT.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\data structure\DisjointSetUnion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\graph\MST.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\string\manachar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\math\BallInBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\data structure\TreeArray.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
