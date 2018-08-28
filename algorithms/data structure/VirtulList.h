@@ -1,18 +1,36 @@
 #pragma once
 #include "stdafx.h"
 using namespace std;
-class VirtulList {
+template<_Ty> class VirtulListNode {
+    _Ty data;
+    int pre, nex, id;
+    VirtulListNode *list;
+    VirtulListNode() {};
+    void set(_Ty _data, int _pre, int _nex, int _id, VirtulListNode *_list) {
+        data = _data, pre = _pre, nex = _nex, id = _id, list = _list;
+    }
+};
+template<_Ty> class VirtulList {
 public:
-    int data[100000], pre[100000], nex[100000], head, end, sz;
-    bool exist[100000];
-    VirtulList() {};
-    void build(int * a, int n) {
-        for (int i = 0; i < n; i++) data[i] = a[i];
+    VirtulListNode *list;
+    int head, end, sz;
+    bool *exist;
+    VirtulList(int iN): sz(iN) {
+        list = new VirtulListNode[iN << 1], exist = new int[iN << 1];
+    };
+    void build(_Ty * a, int n) {
+        for (int i = 0; i < n; i++) list[i].data = a[i];
         head = 0, end = -1, sz = n;
-        for (int i = 1; i < n; i++) pre[i] = i - 1;
-        for (int i = 0; i < n; i++) nex[i] = i + 1;
+        for (int i = 1; i < n; i++) list[i].pre = i - 1;
+        list[0].pre = -1;
+        for (int i = 0; i < n; i++) list[i].nex = i + 1;
         nex[n - 1] = end;
         memset(exist, true, sizeof(exist));
+    }
+    _Ty & operator [](int x) {
+        return list[i].data;
+    }
+    _Ty operator [] = (int x, _Ty &y) {
     }
     void insert(int x, int w) {
         int l = x, r = nex[x];
@@ -34,4 +52,7 @@ public:
     int next(int x) {
         return nex[x];
     }
-}; 
+    ~VirtulList() {
+        delete[] list, delete[] exist;
+    }
+};
