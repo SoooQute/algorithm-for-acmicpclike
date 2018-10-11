@@ -31,26 +31,35 @@ class Mobius {
 public:
     int *u, sz, *p, pn, *r, rn;
     bool *v;
-    Mobius(int n): sz(n), pn(0), u(new int[n + 1]), p(new int[n + 1]), r(new int[n + 1]), v(new bool[n + 1]) {
-        memset(v, true, sizeof(v));
+    Mobius(int n) : sz(n), pn(0), u(new int[n + 1]), p(new int[n + 1]), r(new int[n + 1]), v(new bool[n + 1]) {
+        memset(v, true, sizeof(bool) * (n + 1));
         v[0] = v[1] = false;
-        for (int i = 2; i <= n; i++) {
-            if (!v[i]) continue;
+
+        for(int i = 2; i <= n; i++) {
+            if(!v[i]) continue;
+
             p[pn++] = i;
-            for (int j = i + i; j <= n; j += i) v[j] = false;
+
+            for(int j = i + i; j <= n; j += i) v[j] = false;
         }
-        for (int i = 1; i <= n; i++) u[i] = 1;
-        for (int i = 0; i < pn; i++) {
-            for (int j = p[i]; j <= n; j += p[i]) u[j] *= -1;
+
+        for(int i = 1; i <= n; i++) u[i] = 1;
+
+        for(int i = 0; i < pn; i++) {
+            for(int j = p[i]; j <= n; j += p[i]) u[j] *= -1;
+
             int pp = p[i] * p[i];
-            for (int j = pp; j <= n; j += pp) u[j] = 0;
+
+            for(int j = pp; j <= n; j += pp) u[j] = 0;
         }
     }
     void invert(int *F, int *f, int n) {
         memset(f, 0, sizeof(int) * (n + 1));
-        for (int d = 1; d <= n; d++) {
+
+        for(int d = 1; d <= n; d++) {
             int m = n / d, q = 0;
-            for (int i = 1; i <= m; i++) {
+
+            for(int i = 1; i <= m; i++) {
                 q += d;
                 f[q] += u[d] * F[i];
             }
@@ -58,19 +67,26 @@ public:
     }
     int invert(int *F, int x) {
         rn = 0;
-        for (int i = 0; i < pn; i++) {
-            if (x % p[i] == 0) r[rn++] = p[i];
-            if (x < p[i]) break;
+
+        for(int i = 0; i < pn; i++) {
+            if(x % p[i] == 0) r[rn++] = p[i];
+
+            if(x < p[i]) break;
         }
+
         int ans = 0;
-        for (int i = 0; i < (1 << rn); i++) {
+
+        for(int i = 0; i < (1 << rn); i++) {
             int cnt = 0, m = 1;
-            for (int j = 0; j < rn; j++) {
-                if (i & (1 << j)) cnt++, m *= r[j];
+
+            for(int j = 0; j < rn; j++) {
+                if(i & (1 << j)) cnt++, m *= r[j];
             }
-            if (cnt & 1) ans -= F[x / m];
+
+            if(cnt & 1) ans -= F[x / m];
             else ans += F[x / m];
         }
+
         return ans;
     }
     ~Mobius() {
