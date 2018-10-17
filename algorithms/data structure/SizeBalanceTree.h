@@ -15,12 +15,16 @@ public:
         T = new SizeBalanceTreeNode<Ty>[n];
         memset(T, 0, sizeof(SizeBalanceTreeNode<Ty>) * n);
     }
-	~SizeBalanceTree() { delete[] T; }
+    ~SizeBalanceTree() {
+        delete[] T;
+    }
     void clear() {
         cnt = rt = 0;
         memset(T, 0, sizeof(SizeBalanceTreeNode<Ty>) * sz);
     }
-	inline void pushUp(int x) { T[x].size = T[T[x].son[0]].size + T[T[x].son[1]].size + 1; }
+    inline void pushUp(int x) {
+        T[x].size = T[T[x].son[0]].size + T[T[x].son[1]].size + 1;
+    }
     inline int newNode(Ty);
     void rotate(int, int&);
     void maintain(int&, int);
@@ -29,31 +33,49 @@ public:
     inline int succ(int);
 
     void insert(Ty, int&);
-	void insert(Ty key) { insert(key, rt); }
+    void insert(Ty key) {
+        insert(key, rt);
+    }
     bool erase(Ty, int&);
-	bool erase(Ty key) { return erase(key, rt); }
-    
+    bool erase(Ty key) {
+        return erase(key, rt);
+    }
     Ty kth(int, int);
-	//the value of k th node in ascending order
-	Ty kth(int k) { return T[kth(k, rt)].key; }
+    //the value of k th node in ascending order
+    Ty kth(int k) {
+        return T[kth(k, rt)].key;
+    }
     int rank(Ty, int);
-	//the number of nodes whose value is strickly smaller than key
-	int rank(Ty key) { return rank(key, rt); }
+    //the number of nodes whose value is strickly smaller than key
+    int rank(Ty key) {
+        return rank(key, rt);
+    }
     int count(Ty, int);
     //the number of nodes whose value is key
-	int count(Ty key) { return count(key, rt); }
+    int count(Ty key) {
+        return count(key, rt);
+    }
     Ty lower_bound(Ty, int&);
     Ty upper_bound(Ty, int&);
     //the largest node's value whose value is strictly less than key
-	Ty lower_bound(Ty key) { return lower_bound(key, rt); }
+    Ty lower_bound(Ty key) {
+        return lower_bound(key, rt);
+    }
     //the smallest node's value whose value is strictly more than key
-	Ty upper_bound(Ty key) { return upper_bound(key, rt); }
+    Ty upper_bound(Ty key) {
+        return upper_bound(key, rt);
+    }
     int find(Ty, int);
     //the id of a node whose value is key
-	int find(Ty key) { return find(key, rt); }
+    int find(Ty key) {
+        return find(key, rt);
+    }
     void traverse(int);
     //output all
-	void traverse() { traverse(rt); cout << endl; }
+    void traverse() {
+        traverse(rt);
+        cout << endl;
+    }
 };
 template<typename Ty> inline int SizeBalanceTree<Ty>::newNode(Ty key) {
     ++cnt;
