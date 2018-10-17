@@ -114,6 +114,9 @@
     <ClInclude Include="algorithms\data structure\TreeArray.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="algorithms\data structure\SizeBalanceTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

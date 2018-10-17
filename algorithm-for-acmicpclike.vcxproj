@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="algorithms\data structure\RbTree.h" />
     <ClInclude Include="algorithms\data structure\SegmentTree.h" />
+    <ClInclude Include="algorithms\data structure\SizeBalanceTree.h" />
     <ClInclude Include="algorithms\data structure\Splay.h" />
     <ClInclude Include="algorithms\data structure\Treap.h" />
     <ClInclude Include="algorithms\data structure\TreeAnatomy.h" />
