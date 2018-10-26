@@ -45,9 +45,6 @@
     <ClInclude Include="algorithms\graph\LCA.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="algorithms\graph\maxflow_SAP.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="algorithms\graph\mincostflow.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -115,6 +112,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="algorithms\data structure\SizeBalanceTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithms\graph\SAP.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
