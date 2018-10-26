@@ -152,7 +152,7 @@ template<typename Ty> Ty SizeBalanceTree<Ty>::kth(int k, int x) {
     if(k > T[T[x].son[0]].size + 1) return kth(k - T[T[x].son[0]].size - 1, T[x].son[1]);
     else return kth(k, T[x].son[0]);
 }
-template<typename Ty> Ty SizeBalanceTree<Ty>::count(Ty key, int x) {
+template<typename Ty> int SizeBalanceTree<Ty>::count(Ty key, int x) {
     if(!x) return 0;
     int ans = (key == T[x].key);
     if(key <= T[x].key) ans += count(key, T[x].son[0]);

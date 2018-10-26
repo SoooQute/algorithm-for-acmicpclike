@@ -2,11 +2,11 @@
 #include "stdafx.h"
 using namespace std;
 /*
-dir±íÊ¾ÊÇÓĞÏòÍ¼»¹ÊÇÎŞÏòÍ¼
-color±íÊ¾¸ÃµãÊôÓÚÄÄ¸öÇ¿Á¬Í¨·ÖÁ¿
-Scc±íÊ¾Ç¿Á¬Í¨·ÖÁ¿£¬µ±Í¼ÊÇÎŞÏòÍ¼Ê±£¬Scc±íÊ¾É¾µôÍ¼ÖĞµÄÇÅºó»®·Ö³öµÄ¸÷¸ö²¿·Ö
-bridge±íÊ¾Í¼ÖĞµÄÇÅ
-cutvertex±íÊ¾µ±Í¼ÊÇÎŞÏòÍ¼Ê±Í¼ÖĞµÄ¸îµã
+dirè¡¨ç¤ºæ˜¯æœ‰å‘å›¾è¿˜æ˜¯æ— å‘å›¾
+colorè¡¨ç¤ºè¯¥ç‚¹å±äºå“ªä¸ªå¼ºè¿é€šåˆ†é‡
+Sccè¡¨ç¤ºå¼ºè¿é€šåˆ†é‡ï¼Œå½“å›¾æ˜¯æ— å‘å›¾æ—¶ï¼ŒSccè¡¨ç¤ºåˆ æ‰å›¾ä¸­çš„æ¡¥ååˆ’åˆ†å‡ºçš„å„ä¸ªéƒ¨åˆ†
+bridgeè¡¨ç¤ºå›¾ä¸­çš„æ¡¥
+cutvertexè¡¨ç¤ºå½“å›¾æ˜¯æ— å‘å›¾æ—¶å›¾ä¸­çš„å‰²ç‚¹
 */
 class Tarjan {
 public:
@@ -25,7 +25,7 @@ public:
     vector<int> component;
 
     Tarjan(int sz) : size(sz), n(0) {
-        dfn = new int[sz << 1], low = new int[sz << 1], inStack = new bool[sz << 1], cutvertex = new bool[sz << 1], root = new bool[sz << 1], color = new int[sz << 1];
+        dfn = new int[sz << 1], low = new int[sz << 1], inStack = new bool[sz << 1], cutvertex = new bool[sz << 1], root = new bool[sz << 1], color = new int[sz << 1], DAG=new vector<int>[sz << 1];
     }
     void init(vector<int> *, int);
     void dfs(int, int, bool);
